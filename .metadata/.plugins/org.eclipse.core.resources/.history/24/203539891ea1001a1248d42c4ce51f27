@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class StringPalondrome {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	Scanner sc= new Scanner(System.in);
+	String input= sc.next();
+	String test;
+	
+	for(int i=input.length();i<0;i--) {
+		 char t= input.charAt(i); 
+		 String test= " "+ t;
+	}
+	
+	System.out.println(+test);
+			
+		
+		
+	}
+
+}

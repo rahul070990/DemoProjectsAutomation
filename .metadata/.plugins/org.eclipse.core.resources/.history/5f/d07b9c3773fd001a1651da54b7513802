@@ -1,0 +1,135 @@
+package com.ca.pages;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+import com.ca.pages.CreateNews;
+
+
+public class NewsNavigation {
+	
+public WebDriver driver;
+
+public NewsNavigation (WebDriver driver) {
+	this.driver = driver;
+	PageFactory.initElements(driver, this);
+}
+
+@FindBy(xpath = "//a[@title='Content Editor']/span[2]")
+WebElement ContentEditor;
+
+@FindBy(xpath = "//img[@id='Tree_Glyph_0DE95AE441AB4D019EB067441B7C2450']")
+WebElement ContentExpander;
+
+@FindBy(xpath = "//img[@id='Tree_Glyph_6AF71A229A9A4DAFAD0EA2B445599164']")
+WebElement GlobalItemExpander;
+
+@FindBy(xpath = "//img[@id='Tree_Glyph_F8654DE4E66D45FBB8AC79493CEDCBE5']")
+WebElement NewsExpander;
+
+@FindBy(xpath = "//img[@id='Tree_Glyph_729671B07BAD462EADB18BA4002623C8']")
+WebElement TwentyTwentyExpander;
+
+@FindBy(xpath = "//img[@id='Tree_Glyph_B908DE9A0B6944A99A7BFC4E5DCE6887']")
+WebElement NinthMonthExpander;
+
+@FindBy(xpath = "//img[@id='Tree_Glyph_2FAB0933493E4EE8802F7AB038EB00C5']")
+WebElement FifeteenthDayExpander;
+
+@FindBy(xpath = "//a[@id='Tree_Node_2FAB0933493E4EE8802F7AB038EB00C5']")
+WebElement FifteenthDayContext;
+
+@FindBy(xpath = "//td[contains(text(),'Insert')]")
+WebElement Insert;
+
+@FindBy(xpath = "//div[@id='Popup2']//td[contains(text(),'News Article')]")
+WebElement NewsArticle;
+
+@FindBy(xpath = "//input[@id='Value']")
+WebElement NewsName;
+
+@FindBy(xpath = "//button[@id='OK']")
+WebElement OKButton;
+
+
+public void NewsArticleScreen() throws InterruptedException, AWTException {
+	
+	ContentEditor.click();
+	ContentExpander.click();
+	GlobalItemExpander.click();
+	NewsExpander.click();
+	TwentyTwentyExpander.click();
+	NinthMonthExpander.click();
+	//Robot ro= new Robot();
+	//ro.mouseMove(189, 674);
+	
+	scrollclick(FifteenthDayContext,189,674);
+	
+	boolean flag= false;
+	
+	while(flag=false) {
+		
+		if (FifteenthDayContext.isDisplayed()) {
+			flag=true;
+		}
+		else {
+			ro.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+		}
+	}
+	
+	FifteenthDayContext.click();
+	
+	Actions action= new Actions(driver);
+	action.contextClick(FifteenthDayContext).perform();
+	Insert.click();
+	NewsArticle.click();
+	driver.switchTo().frame("jqueryModalDialogsFrame");
+	driver.switchTo().frame("scContentIframeId0");
+	NewsName.sendKeys("TestRahul");
+	OKButton.click();
+	driver.switchTo().defaultContent();
+	System.out.println("Back to default now");
+}
+	
+	public static void scrollclick (WebElement element, int x,int y) throws AWTException {
+		boolean flag= false;
+		Robot ro= new Robot();
+		ro.mouseMove(x, y);
+
+		
+		while(flag=false) {
+			
+			if (element.isDisplayed()) {
+				flag=true;
+			}
+			else {
+				ro.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+			}
+		}
+	}
+		
+
+
+
+
+
+
+
+
+	
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="10" total="14" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="123" started-at="2021-08-01T12:25:11 IST" finished-at="2021-08-01T12:25:11 IST">
+    <groups>
+      <group name="demo1">
+        <method signature="launchbrowser.launchDriver()[pri:0, instance:Demo.Nitish.launchbrowser@67205a84]" name="launchDriver" class="Demo.Nitish.launchbrowser"/>
+      </group> <!-- demo1 -->
+      <group name="demo2">
+        <method signature="launchbrowser.diff(int, int)[pri:0, instance:Demo.Nitish.launchbrowser@67205a84]" name="diff" class="Demo.Nitish.launchbrowser"/>
+        <method signature="secondbrowser.diff(int, int)[pri:0, instance:Demo.Nitish.secondbrowser@7d0587f1]" name="diff" class="Demo.Nitish.secondbrowser"/>
+        <method signature="secondbrowser.sum(int, int)[pri:0, instance:Demo.Nitish.secondbrowser@7d0587f1]" name="sum" class="Demo.Nitish.secondbrowser"/>
+      </group> <!-- demo2 -->
+    </groups>
+    <test name="Test" duration-ms="123" started-at="2021-08-01T12:25:11 IST" finished-at="2021-08-01T12:25:11 IST">
+      <class name="Demo.Nitish.launchbrowser">
+        <test-method status="PASS" signature="diff(int, int)[pri:0, instance:Demo.Nitish.launchbrowser@67205a84]" name="diff" duration-ms="24" started-at="2021-08-01T12:25:11 IST" finished-at="2021-08-01T12:25:11 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- diff -->
+        <test-method status="PASS" signature="launchDriver()[pri:0, instance:Demo.Nitish.launchbrowser@67205a84]" name="launchDriver" duration-ms="3" started-at="2021-08-01T12:25:11 IST" finished-at="2021-08-01T12:25:11 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- launchDriver -->
+      </class> <!-- Demo.Nitish.launchbrowser -->
+      <class name="Demo.Nitish.secondbrowser">
+        <test-method status="PASS" signature="diff(int, int)[pri:0, instance:Demo.Nitish.secondbrowser@7d0587f1]" name="diff" duration-ms="3" started-at="2021-08-01T12:25:11 IST" finished-at="2021-08-01T12:25:11 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- diff -->
+        <test-method status="PASS" signature="sum(int, int)[pri:0, instance:Demo.Nitish.secondbrowser@7d0587f1]" name="sum" duration-ms="3" started-at="2021-08-01T12:25:11 IST" finished-at="2021-08-01T12:25:11 IST">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[2]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[3]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sum -->
+      </class> <!-- Demo.Nitish.secondbrowser -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

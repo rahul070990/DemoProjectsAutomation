@@ -1,0 +1,42 @@
+package programs;
+
+public class Numbers {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		/*
+		 * Swap 2 numbers without 3rd variable
+		int a=1;
+		int b=2;
+		
+		a=a+b;
+		b=a-b;
+		a=a-b;
+		
+		System.out.println("Value of a is:" +a);
+		System.out.println("Value of b is:" +b);
+	*/
+		
+		//reverse a number
+		
+		int number=12345;
+		
+		int rev=0;
+		
+		while(number!=0) {
+		rev=rev*10+number%10;
+		number=number/10;
+		}
+		
+		System.out.println(rev);
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}

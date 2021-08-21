@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\rahul-shar\Documents\POM\PageObjectModel"/>
+		<item value="C:\Users\rahul-shar\Documents\JavaScrapping\CricketCoreCard-WebScrapping"/>
+		<item value="C:\CodeRepo\Kondo-Test-Automation\Kondo-Test-Automation\KondoAPITesting"/>
+		<item value="C:\CodeRepo\Kondo-Test-Automation"/>
+		<item value="C:\Cricket Australia\Utility\CALIveMatchTestSimulationUtility"/>
+		<item value="C:\Cricket Australia\Automation\CAUITestAutomation\CAUITestAutomation"/>
+		<item value="C:\CodeRepo\selenium-cucumber-java-maven-example"/>
+	</list>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.m2e.core.wizards.Maven2ProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.jdt.ui.java"/>
+			<item value="org.eclipse.m2e"/>
+		</list>
+	</section>
+</section>

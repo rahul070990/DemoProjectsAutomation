@@ -1,0 +1,17 @@
+package com.kat.test;
+
+import org.testng.annotations.Test;
+
+public class Test_CoreAPI {
+	@Test
+	public void TS001_VerifyFixtures() {}
+	@Test
+	public void TS001_VerifyScorecard() {}
+	@Test
+	public void TS001_VerifyComments() {}
+	@Test
+	public void TS001_VerifyGraphs() {}
+	@Test
+	public void TS001_VerifyHighlights() {}
+
+}

@@ -1,0 +1,23 @@
+io.cucumber.junit.UndefinedStepException: The step "I am on registration screen" is undefined. You can implement it using the snippet(s) below:
+
+@Given("I am on registration screen")
+public void i_am_on_registration_screen() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+
+Some other steps were also undefined:
+
+@When("I click submit button")
+public void i_click_submit_button() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+@Then("I print all the labels of screen on console")
+public void i_print_all_the_labels_of_screen_on_console() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+

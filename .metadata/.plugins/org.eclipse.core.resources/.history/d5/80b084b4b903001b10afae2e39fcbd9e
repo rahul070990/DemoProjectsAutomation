@@ -1,0 +1,125 @@
+package com.ca.tests;
+
+import org.testng.annotations.Test;
+import java.util.Iterator; 
+import java.util.Set;
+
+import java.awt.AWTException;
+import java.util.List;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import com.ca.base.BaseClass;
+import com.ca.pages.CreateNews;
+import com.ca.utility.XLSReader;
+import com.ca.utility.XLSWriter;
+
+public class TestClassOne {
+	
+	public WebDriver driver;
+	private int invalidImageCount;
+	//String Child_Window;
+	static XLSWriter writer;
+	String strSheetName = "URLs";
+	static String SheetPath= "//src//test//resources//testdata//NewArticle_Data.xlsx";	
+	@Test
+	public void Test() throws InterruptedException, AWTException {
+		
+		System.setProperty("webdriver.chrome.driver", "C://Cricket Australia//Automation//CAUITestAutomation//CAUITestAutomation//src//test//resources//drivers//chromedriver.exe");
+		driver= new ChromeDriver();
+		writer = new XLSWriter(SheetPath);	
+		for(int j=1;j<=2;j++) {
+			driver.get(writer.getCellData(strSheetName, j, 0));
+			System.out.println(writer.getCellData(strSheetName, j, 0));
+			driver.manage().window().maximize();
+			  int refreshCount = 10;    
+			    List<WebElement> element = driver.findElements(By.xpath("//div[starts-with(@class,'hero')]"));    
+			    for (int i = 0; i < refreshCount; i++) {    
+			        if (element.size() > 0) {     
+			            break;    
+			        } else {    
+			            driver.navigate().refresh();    
+			        }     
+			    }
+			Actions action= new Actions(driver);
+			//WebDriverWait wait= new WebDriverWait(driver,40);
+			//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='hero-image']/img[1]")));
+			Thread.sleep(10000);
+			WebElement el=driver.findElement(By.xpath("//div[starts-with(@class,'hero')]/img[1]"));
+			action.contextClick(el).build().perform();
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_DOWN);
+			robot.keyPress(KeyEvent.VK_ENTER);
+			String Parent_Window= driver.getWindowHandle();
+			Set<String> WindowHandles= driver.getWindowHandles();
+			Iterator<String> itr=WindowHandles.iterator();
+			
+			while(itr.hasNext()) {
+				String Child_Window=itr.next();
+				
+				if(!Parent_Window.equals(Child_Window)) {
+					driver.switchTo().window(Child_Window);
+					System.out.println(driver.switchTo().window(Child_Window).getTitle());
+				
+				}
+			}
+			
+			try {
+				invalidImageCount = 0;
+				List<WebElement> imagesList = driver.findElements(By.tagName("img"));
+				System.out.println("Total no. of images are " + imagesList.size());
+				for (WebElement imgElement : imagesList) {
+					if (imgElement != null) {
+						verifyimageActive(imgElement);
+						driver.close();
+						driver.switchTo().window(Parent_Window);
+					
+					}
+				}
+				System.out.println("Total no. of invalid images are "	+ invalidImageCount);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			
+				}
+			
+			
+			}
+			
+			
+		}
+	public void verifyimageActive(WebElement imgElement) {
+		try {
+			HttpClient client = HttpClientBuilder.create().build();
+			HttpGet request = new HttpGet(imgElement.getAttribute("src"));
+			HttpResponse response = client.execute(request);
+			// verifying response code he HttpStatus should be 200 if not,
+			// increment as invalid images count
+			if (response.getStatusLine().getStatusCode() != 200) {
+				invalidImageCount++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+		
+		
+	}
+
+
+

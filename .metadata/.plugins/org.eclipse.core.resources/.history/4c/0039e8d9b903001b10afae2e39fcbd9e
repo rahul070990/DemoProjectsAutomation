@@ -1,0 +1,64 @@
+package com.ca.tests;
+
+import org.testng.annotations.Test;
+import java.util.Iterator; 
+import java.util.Set;
+
+import java.awt.AWTException;
+import java.util.List;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import com.ca.base.BaseClass;
+import com.ca.pages.CreateNews;
+import com.ca.utility.XLSReader;
+import com.ca.utility.XLSWriter;
+
+public class TestClassOne {
+	
+	package com.sanity.UserTest;
+	import java.sql.DriverManager;
+	 import java.sql.PreparedStatement;
+	 import java.sql.ResultSet;
+	
+	 public class DatabseConnection {
+	
+		public ResultSet databaseConnection() {
+
+	    java.sql.Connection conn =null;
+	    ResultSet result = null;
+	    try {
+
+	String url="jdbc:sqlserver://localHost:1433;"+ "databaseName=xxxxxxxxxxx; integratedSecurity=true;";
+
+	String username ="xxxxx\\XXXXXXXXXX";
+	String password="XXXXX";
+	//Initialize Sqldriver instance 
+	  Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+	 // Creating the connection providing URL and username password
+	   conn = DriverManager.getConnection(url, username, password);
+
+	 //Checking for the connection( returns boolean false if connected)
+	   System.out.println(conn.isClosed());
+
+		
+	}
+		}
+
+

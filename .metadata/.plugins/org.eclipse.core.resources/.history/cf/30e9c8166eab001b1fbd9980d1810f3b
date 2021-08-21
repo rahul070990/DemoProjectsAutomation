@@ -1,0 +1,39 @@
+package DemoProjectSelenium.DemoProjectSelenium;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class excelReader {
+	static String SheetPath="C:\\Users\\rahul-shar\\Documents\\SeleniumCourse\\Automation\\fileRead\\excelData.xlsx";
+	static String SheetName="Sheet1"; 
+	FileInputStream fis;
+	static XSSFWorkbook wb;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+		getCellData(SheetPath,SheetName,1,1);
+
+	}
+	
+	
+	public static void getCellData(String SPath, String SheetName, int row, int col) throws IOException {
+		String cellValue;
+		FileInputStream fis=new FileInputStream(SPath);
+		wb= new XSSFWorkbook(fis);
+		XSSFSheet sheet= wb.getSheet(SheetName);	
+		cellValue=sheet.getRow(row).getCell(col).getStringCellValue();
+		
+		
+	}
+	
+	
+}

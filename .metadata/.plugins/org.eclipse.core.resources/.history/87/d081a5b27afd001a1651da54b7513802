@@ -1,0 +1,98 @@
+package com.ca.pages;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import com.ca.utility.XLSWriter;
+import com.ca.pages.NewsNavigation;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+
+
+public class CreateNews {
+	
+public WebDriver driver;
+static XLSWriter writer;
+static String SheetPath= "\\src\\test\\resources\\testdata\\NewArticle_Data.xlsx";
+String strSheetName = "NewsArticle";
+public String data;
+
+public CreateNews (WebDriver driver) {
+	this.driver = driver;
+	PageFactory.initElements(driver, this);
+}
+
+NewsNavigation nn= new NewsNavigation(driver);
+
+@FindBy(xpath = "//select[@id='FIELD415202035']")
+WebElement AuthorDropdown;
+
+@FindBy(xpath = "//div[contains(text(),'Organisation')]//following-sibling::div//input")
+WebElement Organization;
+
+@FindBy(xpath = "//div[contains(text(),'Location')]//following-sibling::div//input")
+WebElement Location;
+
+@FindBy(xpath = "//input[@id='FIELD415202038']")
+WebElement Headline;
+
+@FindBy(xpath = "//input[@id='FIELD415202039']")
+WebElement StandFirst;
+
+@FindBy(xpath = "//iframe[@id='FIELD415202042']")
+WebElement Story;
+
+@FindBy(xpath = "//iframe[@id='Editor_contentIframe']")
+WebElement EditorFrame;
+
+@FindBy(xpath = "//body/br[@class='t-last-br']")
+WebElement EditorBody;
+
+@FindBy(xpath = "//button[@id='OkButton']")
+WebElement Accept;
+
+/*
+@FindBy(xpath = "//div[@id='Popup2']//td[contains(text(),'News Article')]")
+WebElement NewsArticle;
+
+@FindBy(xpath = "//input[@id='Value']")
+WebElement NewsName;
+
+@FindBy(xpath = "//button[@id='OK']")
+WebElement OKButton;
+*/
+
+public void EnterNewsData() throws InterruptedException, AWTException {
+	writer = new XLSWriter(SheetPath);
+	String data1= writer.getCellData(strSheetName, 1, 2);
+	Organization.sendKeys(writer.getCellData(strSheetName, 1, 1));
+	//Robot ro= new Robot();
+	//ro.mouseMove(1330, 685);
+	nn.scrollclick(Location,1330,685);
+	
+}
+
+
+
+
+
+
+
+
+	
+}

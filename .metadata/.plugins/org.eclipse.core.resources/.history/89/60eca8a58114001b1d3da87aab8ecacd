@@ -1,0 +1,473 @@
+package com.ca.pages;
+
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+import org.testng.Assert;
+import com.ca.pages.NewsNavigation;
+
+import com.ca.utility.XLSWriter;
+import com.ca.lib.Library;
+import com.ca.pages.NewsNavigation;
+
+import static org.testng.Assert.assertEquals;
+
+import java.awt.AWTException;
+
+import java.awt.Robot;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+	
+
+public class CreateNews {
+	
+public WebDriver driver;
+static XLSWriter writer;
+//static String SheetPath= "\\src\\test\\resources\\testdata\\NewArticle_Data.xlsx";
+String strSheetName = "NewsArticle";
+public String data;
+public static String Entered_Headline;
+public static String Entered_EditedHeadline;
+
+
+public CreateNews (WebDriver driver) {
+	this.driver = driver;
+	PageFactory.initElements(driver, this);
+}
+
+NewsNavigation nn= new NewsNavigation(driver);
+
+//a[@class='scEditorHeaderTitle']
+@FindBy(xpath = "//a[@class='scEditorHeaderTitle']")
+WebElement ArticleTitle;
+
+@FindBy(xpath = "//div[@id='Popup2']//td[contains(text(),'News Article')]")
+WebElement NewsArticle;
+
+@FindBy(xpath = "//input[@id='Value']")
+WebElement EditTitle;
+
+@FindBy(xpath = "//button[@id='OK']")
+WebElement Rename_OKButton;
+
+@FindBy(xpath = "//input[@id='Value']")
+WebElement NewsName;
+
+@FindBy(xpath = "//div[contains(text(),'Author:')]//following-sibling::div//select")
+WebElement AuthorDropdown;
+
+@FindBy(xpath = "//div[contains(text(),'Organisation')]//following-sibling::div//input")
+WebElement Organization;
+
+@FindBy(xpath = "//div[contains(text(),'Location')]//following-sibling::div//input")
+WebElement Location;
+
+@FindBy(xpath = "//div[contains(text(),'Headline:')]//following-sibling::div//input")
+public static WebElement Headline;
+
+@FindBy(xpath = "//div[contains(text(),'Headline:')]//following-sibling::div//input")
+public static WebElement Edited_Headline;
+
+@FindBy(xpath = "//div[contains(text(),'Standfirst:')]//following-sibling::div//input")
+WebElement StandFirst;
+
+@FindBy(xpath = "//a[contains(text(),'Show editor')]")
+WebElement ShowEditor;
+
+@FindBy(xpath = "//iframe[@id='jqueryModalDialogsFrame']")
+WebElement Editor_Frame;
+
+@FindBy(xpath = "//a/span[@class='ui-icon ui-icon-extlink']")
+WebElement Window_Expander;
+
+@FindBy(xpath = "//a[@title='HTML']")
+WebElement html;
+
+@FindBy(xpath = "//iframe[@id='scContentIframeId0']")
+WebElement Inner_Frame;
+
+@FindBy(xpath = "//textarea[@class='reTextArea']")
+WebElement EditorBody;
+
+@FindBy(xpath = "//div[@class='footerOkCancel']/button[@id='OkButton']")
+WebElement Accept;
+
+
+@FindBy(xpath = "//div[contains(text(),'Publish To:')]/following-sibling::div/a[contains(text(),'Select all')]")
+WebElement SelectAll;
+
+@FindBy(xpath = "//div[contains(text(),'Creation Date:')]/following-sibling::div[2]/div/table/tbody/tr/td/input[contains(@id,'picker_date')]")
+WebElement CreationDate;
+
+@FindBy(xpath = "//td[contains(text(),'Insert')]")
+WebElement Insert;
+
+@FindBy(xpath = "//div[contains(text(),'Publish Date:')]/following-sibling::div[2]/div/table/tbody/tr/td/input[contains(@id,'picker_date')]")
+WebElement PublishDate;
+
+@FindBy(xpath = "//td[@class='scEditorFieldMarkerBarCellRed']/following-sibling::td/div[2]/a[contains(text(),'Browse')]")
+WebElement BrowseLinkText;
+
+@FindBy(xpath = "//span[@id='Tabs_tab_1']")
+WebElement BrowseTab;
+
+@FindBy(xpath = "//div[@class='scTileHeader']")
+List<WebElement> Folders;
+
+@FindBy(xpath = "//div[@class='scTileHeader']")
+List<WebElement> SubFolders;
+
+@FindBy(xpath = "//a[@class='scTile']")
+List<WebElement> Images;
+
+@FindBy(xpath = "//div[@class='footerOkCancel']/button[@id='OK']")
+WebElement OKButton;
+
+@FindBy(xpath = "//span[contains(text(),'Save')]")
+WebElement Save;
+
+@FindBy(xpath = "//a[@id='Tree_Node_2FAB0933493E4EE8802F7AB038EB00C5']")
+WebElement FifteenthDayContext;
+
+
+@FindBy(xpath = "//a[contains(@id,'Nav_PublishStrip')]")
+WebElement PublishHeader;
+
+@FindBy(xpath = "//a[@class='scRibbonToolbarLargeComboButtonBottom']")
+WebElement PublishOption;
+
+
+@FindBy(xpath = "//div[@class='scPopup']/table/tbody/tr/td[2]")
+WebElement PublishItem;
+
+@FindBy(xpath = "//label[@for='SmartPublish']")
+WebElement SmartPublilsh;
+
+@FindBy(xpath = "//input[@id='PublishChildren']")
+WebElement PublishSubItems;
+
+@FindBy(xpath = "//button[@id='NextButton']")
+WebElement PublishButton;
+
+@FindBy(xpath = "//iframe[@id='scContentIframeId1']")
+WebElement PopUp_Frame;
+
+@FindBy(xpath = "//div[@class='footerOkCancel']/button[@id='OK']")
+WebElement Publish_OKButton;
+
+@FindBy(xpath = "//span[contains(text(),'The item has been published.')]")
+WebElement PublishSuccessMessage;
+
+
+@FindBy(xpath = "//button[@class='ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-dialog-titlebar-close']")
+WebElement CloseSuccessPopUp;
+
+@FindBy(xpath = "//button[@id='CancelButton']")
+WebElement CancelButton;
+
+static Library lib = new Library();
+
+
+public void CreateNews (String SheetName, String SheetPath) throws InterruptedException, AWTException {
+	CreateNews cn=new CreateNews(driver);
+	NewsNavigation nn=new NewsNavigation(driver);
+	int i=1;
+	writer= new XLSWriter(SheetPath);
+	int row_count=writer.getRowCount(SheetName);
+	while(i<=row_count) {
+		nn.ArticleCreationOnDay();
+
+	driver.switchTo().frame("jqueryModalDialogsFrame");
+	driver.switchTo().frame("scContentIframeId0");
+	lib.logMessage("Switched to frame successfully");
+	
+	lib.sendKeys(NewsName, writer.getCellData(SheetName, i, 0));
+	//NewsName.sendKeys(writer.getCellData(SheetName, i, 0));
+	lib.logMessage("User has entered the desired Article Name");
+	
+	lib.clickElement(Rename_OKButton);
+	//Rename_OKButton.click();
+	
+	driver.switchTo().defaultContent();
+	
+	Select author_dropdown= new Select(AuthorDropdown);
+	author_dropdown.selectByVisibleText("Cricket Network");
+	lib.logMessage("User has selected AUthor Dropdown option successfully");
+	
+	lib.sendKeys(Organization, writer.getCellData(SheetName, i, 1));
+	//Organization.sendKeys(writer.getCellData(SheetName, i, 1));
+	lib.logMessage("User has passed the Organization value successfully");
+	
+	nn.scrollclick(Location,1330,685);
+	lib.sendKeys(Location, writer.getCellData(SheetName, i, 2));
+	//Location.sendKeys(writer.getCellData(SheetName, i, 2));
+	lib.logMessage("User has passed the Location value successfully");
+	
+	nn.scrollclick(Headline,1330,685);
+	lib.sendKeys(Headline, writer.getCellData(SheetName, i, 3));
+	//Headline.sendKeys(writer.getCellData(SheetName, i, 3));
+	lib.logMessage("User has passed the Headline value successfully");
+	
+	
+	Entered_Headline= Headline.getAttribute("value");
+	
+	nn.scrollclick(StandFirst,1330,685);
+	lib.sendKeys(StandFirst, writer.getCellData(SheetName, i, 4));
+	//StandFirst.sendKeys(writer.getCellData(SheetName, i, 4));
+	lib.logMessage("User has passed the Standfirst value successfully");
+	
+	lib.clickElement(ShowEditor);
+	//ShowEditor.click();
+	Thread.sleep(2000);
+	driver.switchTo().frame(Editor_Frame);
+	lib.logMessage("User has switched to Editor Outer Frame successfully");
+	
+	Thread.sleep(3000);
+	lib.clickElement(Window_Expander);
+	//Window_Expander.click();
+	Thread.sleep(3000);
+	driver.switchTo().frame(Inner_Frame);
+	lib.logMessage("User has switched to Editor Inner Frame successfully");
+	
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView();", html);
+	lib.clickElement(html);
+	//html.click();
+	
+	lib.sendKeys(EditorBody, writer.getCellData(SheetName, i, 5));
+	//EditorBody.sendKeys(writer.getCellData(SheetName, i, 5));
+	lib.logMessage("User has passed the Editor content value successfully");
+	
+	Thread.sleep(2000);
+	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	jse.executeScript("arguments[0].scrollIntoView()", Accept);
+	lib.clickElement(Accept);
+	//Accept.click();
+	lib.logMessage("User has clicked Accept button successfully");
+	
+	driver.switchTo().defaultContent();
+	//Thread.sleep(3000);
+	nn.scrollclick(SelectAll,1333,685);
+	lib.clickElement(SelectAll);
+	//SelectAll.click();
+	lib.logMessage("User has selected all the Websites for publishing successfully");
+	
+	nn.scrollclick(CreationDate,1330,685);
+	CreationDate.clear();
+	
+	lib.sendKeys(CreationDate, writer.getCellData(SheetName, i, 6));
+	//CreationDate.sendKeys(writer.getCellData(SheetName, i, 6));
+	lib.logMessage("User has passed the Creation Date value successfully");
+	
+	nn.scrollclick(PublishDate,1330,685);
+	PublishDate.clear();
+	lib.sendKeys(PublishDate, writer.getCellData(SheetName, i, 7));
+	//PublishDate.sendKeys(writer.getCellData(SheetName, i, 7));
+	lib.logMessage("User has passed the PublishDate value successfully");
+	
+	
+	nn.scrollclick(BrowseLinkText,1330,685);
+	lib.clickElement(BrowseLinkText);
+	//BrowseLinkText.click();
+	lib.logMessage("User has selected Browser option for Image UPload successfully");
+	
+	driver.switchTo().frame(Editor_Frame);
+	lib.logMessage("User has switched to BrowseImage Outer Frame successfully");
+	driver.switchTo().frame(Inner_Frame);
+	lib.logMessage("User has switched to BrowseImageInner Frame successfully");
+	
+	lib.clickElement(BrowseTab);
+	//BrowseTab.click();
+	
+	
+	Folders.get(0).click();
+	SubFolders.get(0).click();
+	Images.get(0).click();
+	
+	lib.clickElement(OKButton);
+	//OKButton.click();
+	lib.logMessage("User has uploaded the Image successfully");
+	lib.clickElement(Save);
+	//Save.click();
+	lib.logMessage("User has save the News Article successfully");
+
+	FifteenthDayContext.click();
+	cn.PublishArticle();
+	i++;
+	
+	}
+}
+
+//public void MultipleNewsCreation(String SheetName) throws InterruptedException, AWTException {
+//	writer = new XLSWriter(SheetPath);
+//	CreateNews cn=new CreateNews(driver);
+//	int i=1;
+//	int row_count=writer.getRowCount(SheetName);
+//	while(i<=row_count) {
+//	cn.CreateNews(SheetName);
+//	cn.PublishArticle();
+//	i++;
+//	}
+//	
+//}
+
+public void CreateEditedNews (String SheetName, String SheetPath) throws InterruptedException, AWTException {
+	
+	writer = new XLSWriter(SheetPath);
+	ArticleTitle.click();
+	driver.switchTo().frame(Editor_Frame);
+	lib.logMessage("User has switched to Outer Frame successfully");
+	driver.switchTo().frame(Inner_Frame);
+	lib.logMessage("User has switched to Inner Frame successfully");
+	EditTitle.clear();
+	EditTitle.sendKeys(writer.getCellData(SheetName, 1, 0));
+	lib.logMessage("User has passed the Edited Title value successfully");
+	Rename_OKButton.click();
+	nn.scrollclick(Edited_Headline,1330,685);
+	Edited_Headline.clear();
+	Edited_Headline.sendKeys(writer.getCellData(SheetName, 1, 3));
+	lib.logMessage("User has Edited Headline value successfully");
+	Entered_EditedHeadline= Edited_Headline.getAttribute("value");
+	nn.scrollclick(StandFirst,1330,685);
+	StandFirst.clear();
+	StandFirst.sendKeys(writer.getCellData(SheetName, 1, 4));
+	lib.logMessage("User has passed the Standfirst value successfully");
+	ShowEditor.click();
+	Thread.sleep(2000);
+	driver.switchTo().frame(Editor_Frame);
+	lib.logMessage("User has switched to Outer Frame successfully");
+	Thread.sleep(3000);
+	Window_Expander.click();
+	Thread.sleep(3000);
+	driver.switchTo().frame(Inner_Frame);
+	lib.logMessage("User has switched to Inner Frame successfully");
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	js.executeScript("arguments[0].scrollIntoView();", html);
+	html.click();
+	EditorBody.clear();
+	EditorBody.sendKeys(writer.getCellData(SheetName, 1, 5));
+	lib.logMessage("User has passed the Edited Body content successfully");
+	Thread.sleep(2000);
+	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	jse.executeScript("arguments[0].scrollIntoView()", Accept);
+	Accept.click();
+	lib.logMessage("User has clicked the Accept button successfully");
+	driver.switchTo().defaultContent();
+	//Thread.sleep(3000);
+	nn.scrollclick(SelectAll,1333,685);
+	SelectAll.click();
+	nn.scrollclick(CreationDate,1330,685);
+	CreationDate.clear();
+	CreationDate.sendKeys(writer.getCellData(SheetName, 1, 6));
+	lib.logMessage("User has passed the Creation Date value successfully");
+	nn.scrollclick(PublishDate,1330,685);
+	PublishDate.clear();
+	PublishDate.sendKeys(writer.getCellData(SheetName, 1, 6));
+	lib.logMessage("User has passed the Publish Date value successfully");
+	Save.click();
+}
+	
+public void PublishArticle() throws InterruptedException {
+//	WebDriverWait Header_Wait= new WebDriverWait(driver, 10);
+//	Header_Wait.until(ExpectedConditions.visibilityOf(PublishHeader));
+	Thread.sleep(2000);
+	try {
+		lib.clickElement(PublishHeader);
+		lib.logMessage("User has clicked Publish Header successfully");
+	}
+	catch(Exception e) {
+		driver.findElement(By.xpath("//a[contains(@id,'Nav_PublishStrip')]"));
+		//lib.clickElement(PublishHeader);
+		//PublishHeader.click();
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+	     executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[contains(@id,'Nav_PublishStrip')]")));
+		lib.logMessage("User has clicked Publish Header successfully");
+		
+	}
+	
+	try {
+		lib.clickElement(PublishOption);
+		lib.logMessage("User has clicked Publish Option successfully");
+	}
+	catch(Exception e) {
+		driver.findElement(By.xpath("//a[@class='scRibbonToolbarLargeComboButtonBottom']"));
+		//lib.clickElement(PublishHeader);
+		//PublishHeader.click();
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+	     executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@class='scRibbonToolbarLargeComboButtonBottom']")));
+		lib.logMessage("User has clicked Publish Option successfully");
+		
+	}
+	lib.clickElement(PublishOption);
+	//PublishOption.click();
+	lib.logMessage("User has clicked Publish Option successfully");
+	
+	JavascriptExecutor jse1 = (JavascriptExecutor)driver;
+	jse1.executeScript("arguments[0].scrollIntoView()", PublishItem);
+	
+	lib.clickElement(PublishItem);
+	//PublishItem.click();
+	lib.logMessage("User has clicked Publish Item successfully");
+	//Thread.sleep(2000);
+	
+	driver.switchTo().frame(Editor_Frame);
+	lib.logMessage("User has switched to Outer Frame successfully");
+	driver.switchTo().frame(Inner_Frame);
+	lib.logMessage("User has switched to Inner Frame successfully");
+	
+	if(!PublishSubItems.isSelected()) {
+		Thread.sleep(5000);
+		lib.clickElement(PublishSubItems);
+		//PublishSubItems.click();
+		lib.logMessage("User has clicked PublishSubItems successfully");
+	}
+	lib.clickElement(PublishButton);
+
+	//PublishButton.click();
+	lib.logMessage("User has clicked PublishButton successfully");
+	//Thread.sleep(3000);
+	driver.switchTo().defaultContent();
+	driver.switchTo().frame(Editor_Frame);
+	lib.logMessage("User has switched to Outer Frame successfully");
+	Thread.sleep(2000);
+	driver.switchTo().frame(PopUp_Frame);
+	lib.logMessage("User has switched to Inner Frame successfully");
+	
+	lib.clickElement(Publish_OKButton);
+	//Publish_OKButton.click();
+	lib.logMessage("User has clicked Publish OK Button successfully");
+	driver.switchTo().defaultContent();
+	driver.switchTo().frame(Editor_Frame);
+	driver.switchTo().frame(Inner_Frame);
+	lib.logMessage("User has switched to Outer & Inner Frame successfully");
+	
+	WebDriverWait wait= new WebDriverWait(driver,30);
+	wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'The item has been published.')]")));
+	String Actual= PublishSuccessMessage.getText();
+	String Expected="The item has been published.";
+	if(Actual.equalsIgnoreCase(Expected)) {
+		lib.logPassed("Item published text has been displayed");
+	}
+	else {
+		lib.logFailed("Item published text has not been displayed in time");
+	}
+	lib.clickElement(CancelButton);
+	//CancelButton.click();
+	lib.logMessage("User has clicked Cancel Button successfully");
+}
+	//driver.close();
+
+}
+

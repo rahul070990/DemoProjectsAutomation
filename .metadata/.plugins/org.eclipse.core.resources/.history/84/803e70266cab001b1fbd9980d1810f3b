@@ -1,0 +1,64 @@
+package DemoProjectSelenium.DemoProjectSelenium;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class excelReader {
+	String SheetPath="C:\\Users\\rahul-shar\\Documents\\SeleniumCourse\\Automation\\fileRead\\excelData.xlsx";
+	FileInputStream fis;
+	XSSFWorkbook wb;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+	
+		
+		
+		
+		
+		Iterator<Row> row_iterator= sheet.iterator();
+		while(row_iterator.hasNext()) {
+			Row row=row_iterator.next();
+			
+			Iterator<Cell> cell_iterator = row.iterator();
+			
+			while(cell_iterator.hasNext()) {
+				Cell cell = cell_iterator.next();
+                // Check the cell type and format accordingly
+				if(cell.getCellType()==CellType.STRING) {
+					cell.getStringCellValue();
+				}
+               
+				
+				
+				
+				
+				}
+				
+				
+			}
+			
+			
+			
+			
+		}
+			
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+

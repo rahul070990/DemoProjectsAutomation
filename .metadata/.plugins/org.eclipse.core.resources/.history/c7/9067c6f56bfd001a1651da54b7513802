@@ -1,0 +1,107 @@
+package com.ca.pages;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
+
+import com.ca.utility.XLSWriter;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
+
+
+public class CreateNews {
+	
+public WebDriver driver;
+static XLSWriter writer;
+static String SheetPath= "\\src\\test\\resources\\testdata\\NewArticle_Data.xlsx";
+String strSheetName = "NewsArticle";
+public String data;
+
+public CreateNews (WebDriver driver) {
+	this.driver = driver;
+	PageFactory.initElements(driver, this);
+}
+
+@FindBy(xpath = "//select[@id='FIELD415202035']")
+WebElement AuthorDropdown;
+
+@FindBy(xpath = "//input[@id='FIELD228086874']")
+WebElement Organization;
+
+@FindBy(xpath = "//input[@id='FIELD415202037']")
+WebElement Location;
+
+@FindBy(xpath = "//input[@id='FIELD415202038']")
+WebElement Headline;
+
+@FindBy(xpath = "//input[@id='FIELD415202039']")
+WebElement StandFirst;
+
+@FindBy(xpath = "//iframe[@id='FIELD415202042']")
+WebElement Story;
+
+@FindBy(xpath = "//iframe[@id='Editor_contentIframe']")
+WebElement EditorFrame;
+
+@FindBy(xpath = "//body/br[@class='t-last-br']")
+WebElement EditorBody;
+
+@FindBy(xpath = "//button[@id='OkButton']")
+WebElement Accept;
+
+/*
+@FindBy(xpath = "//div[@id='Popup2']//td[contains(text(),'News Article')]")
+WebElement NewsArticle;
+
+@FindBy(xpath = "//input[@id='Value']")
+WebElement NewsName;
+
+@FindBy(xpath = "//button[@id='OK']")
+WebElement OKButton;
+*/
+
+
+
+
+/*
+public static String GetData(String sheetname,int i,int j) {
+	writer = new XLSWriter(SheetPath);
+	//int i=1;
+	//for (int j=1;j<=8;j++) {
+	String data= writer.getCellData(sheetname,i, j);
+	return data;
+	}
+*/
+
+public void EnterNewsData() throws InterruptedException {
+	writer = new XLSWriter(SheetPath);
+	String data1= writer.getCellData(strSheetName, 1, 2);
+	System.out.println(data1);
+	Thread.sleep(3000);
+	//Organization.sendKeys("data1");
+	Organization.sendKeys(writer.getCellData(strSheetName, 1, 1));
+}
+
+
+
+
+
+
+
+
+	
+}

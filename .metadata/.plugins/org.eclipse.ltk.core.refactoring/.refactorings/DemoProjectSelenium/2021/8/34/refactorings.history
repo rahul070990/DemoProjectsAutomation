@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;excelReader.java&apos; to &apos;Nitish/src/test/java&apos;&#x0D;&#x0A;- Original project: &apos;DemoProjectSelenium&apos;&#x0D;&#x0A;- Destination element: &apos;Nitish/src/test/java&apos;&#x0D;&#x0A;- Original element: &apos;DemoProjectSelenium.DemoProjectSelenium.excelReader.java&apos;" description="Copy compilation unit" destination="=Nitish/src\/test\/java" element1="/src\/test\/java&lt;DemoProjectSelenium.DemoProjectSelenium{excelReader.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1629274510611" units="1" version="1.0"/>
+</session>

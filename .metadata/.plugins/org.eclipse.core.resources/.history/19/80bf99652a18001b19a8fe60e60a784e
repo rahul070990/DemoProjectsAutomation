@@ -1,0 +1,45 @@
+package com.ca.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
+import com.ca.lib.Library;
+import com.ca.pages.NewsNavigation;
+
+public class SiteCoreLogin {
+	
+public WebDriver driver;
+
+
+public SiteCoreLogin (WebDriver driver) {
+	this.driver = driver;
+	PageFactory.initElements(driver, this);
+}
+
+@FindBy(xpath = "//input[@name='UserName']")
+public WebElement UserName;
+
+@FindBy(xpath = "//input[@name='Password']")
+public WebElement Password;
+
+@FindBy(xpath = "//input[@type='submit']")
+public WebElement Login;
+
+static Library lib = new Library();
+
+public NewsNavigation SiteCore_Login(String username, String password) {
+	lib.sendKeys(UserName, username);
+	lib.logMessage("User has successfully entered username as: " +username);
+	lib.sendKeys(Password, password);
+	lib.logMessage("User has successfully entered password as: " +password);
+	lib.clickElement(Login);
+	lib.logMessage("User has successfully clicked Login button");
+	NewsNavigation newsNavigation= new NewsNavigation(driver);
+	return newsNavigation;
+	
+	
+}
+
+}

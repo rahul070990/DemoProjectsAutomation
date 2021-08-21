@@ -1,0 +1,85 @@
+package com.kat.test;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.response.ResponseBody;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+
+public class KAT_TS01 {
+	String endpointURL = "https://cauatcricketapi-docker.azurewebsites.net/competitions/current";
+	ResponseSpecification verifyStatusCodeAndContentType = new ResponseSpecBuilder().expectStatusCode(200)
+			.expectContentType(ContentType.JSON).build();
+
+	@Test
+	public void TC_001_verifyStatusCodeAndContentType() {
+		System.out.println("TC_001_verifyStatusCodeAndContentType");
+
+		given().contentType(ContentType.JSON).when().get(endpointURL).then().assertThat()
+				.spec(verifyStatusCodeAndContentType);
+
+	}
+
+	@Test
+	public void TC_002_verifyCurrentCompetitions() {
+		String fixtureId = "";
+		RestAssured.baseURI = endpointURL;
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.get(fixtureId);
+		int statusCode = response.getStatusCode();
+
+		Assert.assertEquals(statusCode, 200, "Correct status code returned");
+		// Error Status code
+		// Assert.assertEquals(statusCode /*actual value*/, 400 /*expected value*/,
+		// "Correct error code returned");
+		// Get the status line from the Response
+		String statusLine = response.getStatusLine();
+		Assert.assertEquals(statusLine, "HTTP/1.1 200 OK", "Correct status Line returned");
+		Headers allHeaders = response.headers();
+
+		// Iterate over all the Headers
+		for (Header header : allHeaders) {
+			System.out.println("Key: " + header.getName() + " Value: " + header.getValue());
+		}
+
+		// Header named Content-Type
+		String contentType = response.header("Content-Type");
+		Assert.assertEquals(contentType, "application/json; charset=utf-8");
+
+		// Header named Server
+		String serverType = response.header("Server");
+		Assert.assertEquals(serverType, "nginx");
+
+		// Header named Content-Encoding
+		String contentEncoding = response.header("Content-Encoding");
+		Assert.assertEquals(contentEncoding, "gzip");
+
+		// Retrieve the body of the Response
+		ResponseBody body = response.getBody();
+		System.out.println("Response Body is: " + body.asString());
+
+		JsonPath jsonPathEvaluator = response.jsonPath();
+		int competitionId = jsonPathEvaluator.get("CurrentCompetitionDetails[0].CompetitionId");
+		System.out.println("CompetitionId - " + competitionId);
+
+		String format = jsonPathEvaluator.get("CurrentCompetitionDetails[3].Formats[0].DisplayName");
+		System.out.println("DisplayName- " + format);
+		format = jsonPathEvaluator.get("CurrentCompetitionDetails[3].Formats[0].SeriesFormatName");
+		System.out.println("SeriesFormatName- " + format);
+		format = jsonPathEvaluator.get("CurrentCompetitionDetails[3].Name");
+		System.out.println("Name- " + format);
+
+	}
+
+}

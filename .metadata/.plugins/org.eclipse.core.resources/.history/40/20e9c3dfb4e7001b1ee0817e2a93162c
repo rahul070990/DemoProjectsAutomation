@@ -1,0 +1,46 @@
+package programs;
+
+import java.util.Stack;
+
+public class StackTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		String a="[{()}]";
+		
+		Stack<Character> s=new Stack<Character>();
+		char[] b=a.toCharArray();
+		String[] c=a.split('(');
+		System.out.println(c[1]);
+		
+		for(char x: b) {
+			
+			if(s.isEmpty()) {
+				s.push(x);
+			}
+			else if(s.peek().equals('}') || s.peek().equals(')') || s.peek().equals(']')){
+				s.pop();
+			}
+			else if(!s.peek().equals(x)){
+				s.push(x);
+			}
+			
+		}
+		
+		if(s.isEmpty()) {
+			System.out.println("Braces are balanced");
+		}
+		else{
+			System.out.println("Braces are unablanced");
+		}
+		
+		
+		
+		
+		
+		
+	}
+
+}

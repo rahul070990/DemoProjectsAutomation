@@ -1,0 +1,56 @@
+package com.kat.test;
+
+import org.codehaus.groovy.ast.stmt.ContinueStatement;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import com.kat.base.BaseClass;
+import com.kat.lib.Library;
+import com.kat.util.TestResultListener;
+
+@Listeners(TestResultListener.class)
+
+public class TestReports extends BaseClass {
+	static Library lib=new Library();
+	@BeforeTest
+	public void startTest() {
+		lib.logMessage("TC_TestReport started.");	
+	}
+	
+	@Test
+	public void TC1_TestReport() {	
+		
+		lib.logPassed("TC1_TestReport done.");	
+		Assert.assertEquals(true, true);
+		
+	
+	}
+	@Test
+	public void TC2_TestReport() {	
+		
+		//lib.logMessage("TC2_TestReport done.");	
+		//Assert.assertEquals(true, true);
+		
+	
+	}
+	@Test
+	public void TC3_TestReport() {	
+		
+		lib.logFailed("TC3_TestReport done.");	
+		Assert.assertEquals(true, true);
+		
+		
+	
+	}
+	@AfterTest
+	public void endTest() {
+		lib.logMessage("TC_TestReport end Test.");
+	}
+
+	
+
+}

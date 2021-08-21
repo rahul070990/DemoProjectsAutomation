@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;CreateNewsArticle.java&apos; to &apos;CAUITestAutomation/src/test/java/com.ca.tests&apos;&#x0D;&#x0A;- Original project: &apos;CAUITestAutomation&apos;&#x0D;&#x0A;- Destination element: &apos;CAUITestAutomation/src/test/java/com.ca.tests&apos;&#x0D;&#x0A;- Original element: &apos;com.ca.tests.CreateNewsArticle.java&apos;" description="Copy compilation unit" destination="/src\/test\/java&lt;com.ca.tests" element1="/src\/test\/java&lt;com.ca.tests{CreateNewsArticle.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1603278811166" units="1" version="1.0"/>
+</session>

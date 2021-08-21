@@ -1,0 +1,9 @@
+package com.kat.test;
+
+import com.kat.base.BaseClass;
+
+public class Summary_Test extends BaseClass{
+	
+	
+
+}

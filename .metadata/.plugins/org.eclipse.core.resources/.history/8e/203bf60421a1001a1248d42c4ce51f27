@@ -1,0 +1,29 @@
+import java.util.Scanner;
+
+public class StringPalondrome {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	Scanner sc= new Scanner(System.in);
+	System.out.println("ENter your desired STring: ");
+	
+	String input= sc.next();
+	String test="" ;
+	System.out.print(input.length());
+	System.out.print(input.charAt(0));
+	
+	for(int i=input.length();i<0;i--) {
+		 char t= input.charAt(i);
+		 System.out.println(t);
+		  test= " "+ t;
+		  System.out.print(test);
+	}
+	
+	
+			
+		
+		
+	}
+
+}

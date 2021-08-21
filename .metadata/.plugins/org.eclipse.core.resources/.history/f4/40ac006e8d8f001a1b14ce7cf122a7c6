@@ -1,0 +1,30 @@
+package Demo;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.awt.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+public class LaunchBrowser {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	
+	WebDriver driver = new ChromeDriver();
+	//System.setProperty("webdriver.chrome.driver", "C://Users//rahul-shar//Drivers//chromedriver.exe");
+	driver.get("https://www.google.com");
+	List<WebElement> L= driver.findElements(By.cssSelector("div.aajZCb ul li"));
+    System.out.println(L.size());
+    for( int i=0;i< L.size();i++)
+    {
+        WebElement e=L.get(i);
+        System.out.println(i+" "+e.getText());
+    }
+	
+	
+	}
+
+}

@@ -1,0 +1,42 @@
+package com.ca.tests;
+import java.awt.AWTException;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+import org.openqa.selenium.WebDriver;
+
+import com.ca.base.BaseClass;
+import com.ca.pages.SiteCoreLogin;
+import com.ca.utility.XLSWriter;
+import com.ca.pages.NewsNavigation;
+import com.ca.pages.CreateNews;
+import com.ca.pages.ArticleVerificationOnUI;
+
+public class DeleteArticle extends BaseClass {
+	static XLSWriter writer;
+	String Credentials = "Credetails";
+	String UnEditedURLs = "URLs";
+	String ArticleContent="NewsArticle";
+	static String SheetPath= "\\src\\test\\resources\\testdata\\NewArticle_Data(1).xlsx";
+
+	
+	@Test
+	public void RepublishArticle() throws InterruptedException, AWTException, IOException {
+		writer = new XLSWriter(SheetPath);	
+		CreateNews cn= new CreateNews(driver);
+		SiteCoreLogin sc= new SiteCoreLogin(driver);
+		NewsNavigation nn= new NewsNavigation(driver);
+		ArticleVerificationOnUI av=new ArticleVerificationOnUI(driver);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(writer.getCellData(Credentials, 1, 0));
+		sc.SiteCore_Login(writer.getCellData(Credentials, 1, 1),writer.getCellData(Credentials, 1, 2));
+		nn.DeleteArticle();
+
+		
+	}
+	
+	
+}

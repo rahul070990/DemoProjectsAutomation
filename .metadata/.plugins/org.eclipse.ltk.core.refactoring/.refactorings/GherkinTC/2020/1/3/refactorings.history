@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;US59160N.feature&apos; to &apos;GherkinTC&apos;&#x0D;&#x0A;- Original project: &apos;GherkinTC&apos;&#x0D;&#x0A;- Destination element: &apos;GherkinTC&apos;&#x0D;&#x0A;- Original element: &apos;US59160N.feature&apos;" description="Copy file" destination="=GherkinTC" element1="US59160N.feature" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1579170018151" units="0" version="1.0"/>
+</session>

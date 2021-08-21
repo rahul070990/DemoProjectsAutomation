@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.robotframework.ide.tableditor.activePage./RobotProject/RobotTest/ParallelRun/TC1.robot">
+		<item value="" key="activePage"/>
+	</section>
+	<section name="org.robotframework.ide.tableditor.activePage./RobotProject/RobotTest/TestSuite1.robot">
+		<item value="" key="activePage"/>
+	</section>
+	<section name="org.robotframework.ide.tableditor.activePage./APIAutomation/TestCases/TC01_GETRequest.robot">
+		<item value="" key="activePage"/>
+	</section>
+	<section name="org.robotframework.ide.tableditor.activePage./RobotTest/DDTScript/DDTScripts.robot">
+		<item value="" key="activePage"/>
+	</section>
+</section>

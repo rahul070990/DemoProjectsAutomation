@@ -1,0 +1,78 @@
+package DemoProjectSelenium.DemoProjectSelenium;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class excelReader {
+	static String SheetPath="C:\\Users\\rahul-shar\\Documents\\SeleniumCourse\\Automation\\fileRead\\excelData.xlsx";
+	static String SheetName="Sheet1"; 
+	FileInputStream fis;
+	static XSSFWorkbook wb;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+		getCellData(SheetPath,SheetName,1,0);
+
+	}
+	
+	
+	public static void getCellData(String SPath, String SheetName, int row, int col) throws IOException {
+		String cellValue;
+		FileInputStream fis=new FileInputStream(SPath);
+		wb= new XSSFWorkbook(fis);
+		XSSFSheet sheet= wb.getSheet(SheetName);	
+		cellValue=sheet.getRow(row).getCell(col).getStringCellValue();
+		System.out.println(cellValue);
+		
+		
+	}
+	
+	public static Object getAllCellData(String SPath, String SheetName) throws IOException {
+		
+		Object cellValue=null;
+		FileInputStream fis=new FileInputStream(SPath);
+		wb= new XSSFWorkbook(fis);
+		XSSFSheet sheet= wb.getSheet(SheetName);
+		
+		Iterator<Row> row_iterator= sheet.rowIterator();
+		while(row_iterator.hasNext()) {
+			Row row=row_iterator.next();
+			
+			Iterator<Cell> cell_iterator= row.cellIterator();
+			while(cell_iterator.hasNext()) {
+				Cell cell= cell_iterator.next();
+				
+				if(cell.getCellType()==CellType.STRING) {
+					return cellValue;
+					
+				}
+				else if(cell.getCellType()==CellType.NUMERIC) {
+					return cellValue;
+					
+				}
+				
+				else if(cell.getCellType()==CellType.BOOLEAN) {
+					return cellValue;
+					
+				}
+				else if(cell.getCellType()==CellType.BLANK) {
+					return cellValue;
+					
+				}
+				
+			}
+		}
+		
+	}
+	
+	
+}

@@ -1,0 +1,9 @@
+package Demo.Project;
+
+public class test {
+	
+	public static test() {
+		
+	}
+
+}

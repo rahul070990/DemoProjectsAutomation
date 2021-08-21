@@ -1,0 +1,57 @@
+package com.ca.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import com.ca.pages.NewsNavigation;
+
+public class SiteCoreLogin {
+	
+public WebDriver driver;
+
+
+public SiteCoreLogin (WebDriver driver) {
+	this.driver = driver;
+	PageFactory.initElements(driver, this);
+}
+
+@FindBy(xpath = "//input[@name='UserName']")
+public WebElement UserName;
+
+@FindBy(xpath = "//input[@name='Password']")
+public WebElement Password;
+
+@FindBy(xpath = "//input[@type='submit']")
+public WebElement Login;
+
+
+public WebElement username() {
+	return UserName;
+}
+
+public WebElement password() {
+	return Password;
+}
+
+public WebElement login() {
+	return Login;
+}
+
+public void login(WebElement username, WebElement password) {
+	
+}
+NewsNavigation nn= new NewsNavigation(driver);
+
+
+
+
+
+
+
+
+
+
+
+	
+}

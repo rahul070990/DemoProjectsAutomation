@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class SwapNumbers {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int a=28;
+		int b=80;
+		
+		
+		
+	}
+
+}

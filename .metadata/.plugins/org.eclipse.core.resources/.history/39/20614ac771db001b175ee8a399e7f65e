@@ -1,0 +1,10 @@
+package Demo.Project;
+
+public class test {
+	
+    static {
+        System.out.println("FOO");
+    }
+
+
+}

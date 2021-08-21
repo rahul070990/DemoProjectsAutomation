@@ -1,0 +1,34 @@
+package com.kat.test;
+
+import static io.restassured.RestAssured.given;
+
+import org.testng.annotations.Test;
+
+import com.kat.base.BaseClass;
+import com.kat.util.ExcelSheetUtility;
+
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.specification.ResponseSpecification;
+
+public class KondoAPITest_TS01 extends BaseClass{
+	
+	
+	
+	@Test
+	public void KP190_TC001_VerifyStatusCodeAndContentType() {
+		ResponseSpecification verifyStatusCodeAndContentType = new ResponseSpecBuilder().expectStatusCode(200)
+				.expectContentType(ContentType.JSON)			
+				.build();
+		
+		String endpointURL=excelUtil.getCellData("TestSuite", 1, 1);
+		System.out.println("TC_001_verifyStatusCodeAndContentType- " +endpointURL);
+
+		given().contentType(ContentType.JSON).when().get(endpointURL).then().assertThat()
+				.spec(verifyStatusCodeAndContentType);
+		System.out.println("TC_001_verifyStatusCodeAndContentType passed.");
+
+	}
+
+
+}

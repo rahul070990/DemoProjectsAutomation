@@ -1,0 +1,65 @@
+package DemoProjectSelenium.DemoProjectSelenium;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class excelReader {
+	String SheetPath="C:\\Users\\rahul-shar\\Documents\\SeleniumCourse\\Automation\\fileRead\\excelData.xlsx";
+	FileInputStream fis;
+	static XSSFWorkbook wb;
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+
+
+	}
+	
+	
+	public static void getCellData(String SPath, String SheetName, int row, int col) throws IOException {
+		
+		FileInputStream fis=new FileInputStream(SPath);
+		wb= new XSSFWorkbook(fis);
+		XSSFSheet sheet= wb.getSheet(SheetName);
+		
+		 Iterator<Row> rowIterator = sheet.iterator();
+         while (rowIterator.hasNext()) {
+             Row row = rowIterator.next();
+             // For each row, iterate through all the columns
+             Iterator<Cell> cellIterator = row.cellIterator();
+
+             while (cellIterator.hasNext()) {
+                 Cell cell = cellIterator.next();
+                 // Check the cell type and format accordingly
+                 switch (cell.getCellType()) {
+                 case Cell.CELL_TYPE_NUMERIC:
+                     System.out.print(cell.getNumericCellValue() + "t");
+                     break;
+                 case Cell.CELL_TYPE_STRING:
+                     System.out.print(cell.getStringCellValue() + "t");
+                     break;
+                 }
+             }
+             System.out.println("");
+         }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+}

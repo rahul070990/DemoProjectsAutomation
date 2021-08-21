@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;DragDrop.java&apos; to &apos;DemoProjectSelenium/src/test/java/DemoProjectSelenium.DemoProjectSelenium&apos;&#x0D;&#x0A;- Original project: &apos;DemoProjectSelenium&apos;&#x0D;&#x0A;- Destination element: &apos;DemoProjectSelenium/src/test/java/DemoProjectSelenium.DemoProjectSelenium&apos;&#x0D;&#x0A;- Original element: &apos;DemoProjectSelenium.DemoProjectSelenium.DragDrop.java&apos;" description="Copy compilation unit" destination="/src\/test\/java&lt;DemoProjectSelenium.DemoProjectSelenium" element1="/src\/test\/java&lt;DemoProjectSelenium.DemoProjectSelenium{DragDrop.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1618287395510" units="1" version="1.0"/>
+</session>

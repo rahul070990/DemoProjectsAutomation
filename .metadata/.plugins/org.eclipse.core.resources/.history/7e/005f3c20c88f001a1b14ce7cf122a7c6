@@ -1,0 +1,33 @@
+package Demo;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+public class LaunchBrowser {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+	
+	WebDriver driver = new ChromeDriver();
+	//System.setProperty("webdriver.chrome.driver", "C://Users//rahul-shar//Drivers//chromedriver.exe");
+	driver.get("https://www.google.com");
+	driver.findElement(By.name("q")).sendKeys("Power bank");
+	Thread.sleep(5);
+	List<WebElement> L= driver.findElements(By.xpath("//div[@class='aajZCb']/ul"));
+    System.out.println(L.size());
+    for( int i=0;i< L.size();i++)
+    {
+        //WebElement e=L.get(i);
+    	System.out.println(L.get(i).getText());
+        //System.out.println(i+" "+e.getText());
+    }
+	
+	driver.close();
+	}
+	
+}

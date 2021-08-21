@@ -1,0 +1,42 @@
+package programs;
+
+import java.util.Scanner;
+
+public class Amst {
+
+	public static void main(String[] args) {
+
+		
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Please enter no to be whether it is Armstrong or not");
+		int number=sc.nextInt();
+		
+		int sum=0;
+		int digitcube=0;
+		int temp=number;
+		while(temp!=0){
+			
+			int rem=temp%10;
+			digitcube=rem*rem*rem;
+			sum=sum+rem*rem*rem;
+			//System.out.println("SUm of the number is:"+sum+"("+digitcube+")");
+			temp=temp/10;
+		}
+		System.out.println("SUm of the number is:"+sum+"("+digitcube+")");
+
+		if(sum==number) {
+			
+			System.out.println("Number is an Armstrong no");
+		}
+		else {
+			System.out.println("Number is not an Armstrong no");
+		}
+		
+		
+		
+		
+		
+		
+	}
+
+}

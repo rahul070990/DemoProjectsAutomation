@@ -1,0 +1,38 @@
+package programs;
+
+import java.util.Scanner;
+
+public class Amst {
+
+	public static void main(String[] args) {
+
+		
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Please enter no to be whether it is Armstrong or not");
+		int number=sc.nextInt();
+		
+		int sum=0;
+		
+		
+		while(number!=0){
+			
+			int rem=number%10;
+			sum=sum+rem*rem*rem;
+			int temp=number/10;
+		}
+		
+		if(sum==number) {
+			System.out.println("Number is an Armstrong no");
+		}
+		else {
+			System.out.println("Number is not an Armstrong no");
+		}
+		
+		
+		
+		
+		
+		
+	}
+
+}
